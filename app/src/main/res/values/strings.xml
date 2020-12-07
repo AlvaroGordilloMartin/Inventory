@@ -17,4 +17,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tvLoading">Cargando...</string>
     <string name="tvNoData">Lo sentimos, no hay datos</string>
+    <string name="btInventario">Inventario</string>
+    <string name="btDependencias">Dependencias</string>
+    <string name="btProductos">Productos</string>
+    <string name="btPerfil">Perfil</string>
+    <string name="btConfiguracion">Configuracion</string>
+    <string name="btSecciones">Secciones</string>
 </resources>

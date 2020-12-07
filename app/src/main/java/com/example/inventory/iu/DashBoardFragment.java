@@ -1,20 +1,24 @@
 package com.example.inventory.iu;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.inventory.R;
+import com.example.inventory.iu.dependency.ListDependencyContract;
+import com.example.inventory.iu.dependency.ListDependencyFragment;
+import com.example.inventory.iu.login.LoginActivity;
+import com.example.inventory.iu.signup.SingUpActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DashBoardFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class DashBoardFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -30,15 +34,7 @@ public class DashBoardFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment DashBoardFragment.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static DashBoardFragment newInstance(String param1, String param2) {
         DashBoardFragment fragment = new DashBoardFragment();
         Bundle args = new Bundle();
@@ -51,16 +47,32 @@ public class DashBoardFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dash_board, container, false);
+        View view = inflater.inflate(R.layout.fragment_dash_board, container, false);
+
+        Button btDependencias = view.findViewById(R.id.btDependencias);
+
+        btDependencias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new ListDependencyFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container,newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        return view;
     }
+
+
 }

@@ -13,7 +13,7 @@ public class DependencyRepository {
         repository = new DependencyRepository();
     }
 
-    private DependencyRepository(){
+    public DependencyRepository(){
         this.list = new ArrayList<>();
         initialice();
     }
