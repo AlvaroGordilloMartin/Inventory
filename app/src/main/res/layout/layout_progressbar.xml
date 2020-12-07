@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#54838383"
     android:visibility="gone"
     android:orientation="vertical">
 
@@ -16,11 +17,11 @@
 
     <TextView
         android:id="@+id/tvLoading"
-        android:gravity="center"
-        android:layout_marginTop="@dimen/layout_progressbar_tvLoading_margintop"
         android:layout_width="match_parent"
-        android:textSize="@dimen/layout_progressbar_tvLoading_textSize"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/aclonica"
-        android:text="@string/tvLoading" />
+        android:layout_marginTop="@dimen/layout_progressbar_tvLoading_margintop"
+        android:gravity="center"
+        android:text="@string/tvLoading"
+        android:textSize="@dimen/layout_progressbar_tvLoading_textSize"
+        android:textStyle="bold" />
 </LinearLayout>
