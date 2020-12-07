@@ -1,20 +1,16 @@
 package com.example.inventory.iu.addedit;
 
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.inventory.R;
-import com.example.inventory.iu.adapter.DependencyAdapter;
-import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 
 public class AddEditListDependencyFragment extends Fragment {
@@ -65,8 +61,6 @@ public class AddEditListDependencyFragment extends Fragment {
         txtShortName.setText(bundle.getString("ShortName"));
         txtDescription.setText(bundle.getString("Description"));
     }
-
-
 
 
 }

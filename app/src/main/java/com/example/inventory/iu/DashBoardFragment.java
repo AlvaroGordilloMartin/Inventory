@@ -1,22 +1,16 @@
 package com.example.inventory.iu;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.inventory.R;
-import com.example.inventory.iu.dependency.ListDependencyContract;
 import com.example.inventory.iu.dependency.ListDependencyFragment;
-import com.example.inventory.iu.login.LoginActivity;
-import com.example.inventory.iu.signup.SingUpActivity;
 
 
 public class DashBoardFragment extends Fragment {
@@ -49,7 +43,6 @@ public class DashBoardFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
 
-
     }
 
     @Override
@@ -65,7 +58,7 @@ public class DashBoardFragment extends Fragment {
             public void onClick(View v) {
                 Fragment newFragment = new ListDependencyFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container,newFragment);
+                transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }

@@ -1,7 +1,11 @@
 package com.example.inventory.iu.dependency;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,33 +14,22 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.AdapterView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.inventory.R;
 import com.example.inventory.data.model.Dependency;
 import com.example.inventory.data.repository.DependencyRepository;
 import com.example.inventory.iu.adapter.DependencyAdapter;
 import com.example.inventory.iu.addedit.AddEditListDependencyFragment;
-import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.util.List;
 
 
-public class ListDependencyFragment extends Fragment implements ListDependencyContract.View{
+public class ListDependencyFragment extends Fragment implements ListDependencyContract.View {
 
     private LinearLayout llLoading;
     private LinearLayout llNoData;
     private RecyclerView rvDependency;
     private DependencyAdapter adapter;
-    private  ListDependencyPresenter presenter;
+    private ListDependencyPresenter presenter;
     private DependencyAdapter.OnItemClickListener listener;
 
     //Lista Dependency
@@ -65,13 +58,13 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
 
         llNoData.setVisibility(View.GONE);
 
-        if(list.size()==0)
+        if (list.size() == 0)
             llNoData.setVisibility(View.VISIBLE);
 
         //OnClick que se encarga del cuando se pulsa un objeto del reciclerView mostrar su informacion
         listener = new DependencyAdapter.OnItemClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 llLoading.setVisibility(View.VISIBLE);
 
@@ -81,33 +74,35 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
                     public void run() {
                         //Recogemos los datos de la lista
                         Bundle bundle = new Bundle();
-                        bundle.putString("Name",list.get(0).getName());
-                        bundle.putString("ShortName",list.get(0).getShortname());
-                        bundle.putString("Description",list.get(0).getDesciption());
+                        bundle.putString("Name", list.get(rvDependency.getChildAdapterPosition(view)).getName());
+                        bundle.putString("ShortName", list.get(rvDependency.getChildAdapterPosition(view)).getShortname());
+                        bundle.putString("Description", list.get(rvDependency.getChildAdapterPosition(view)).getDesciption());
 
                         //Iniciamos la transaccion
                         Fragment newFragment = new AddEditListDependencyFragment();
                         newFragment.setArguments(bundle);
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container,newFragment);
+                        transaction.replace(R.id.fragment_container, newFragment);
                         transaction.addToBackStack(null);
                         transaction.commit();
+
+
 
 
                     }
                 }, 1000);
 
 
-
-
             }
         };
 
         //1. Crear el Adapter
-        adapter = new DependencyAdapter(list,listener);
+        adapter = new DependencyAdapter(list, listener);
+
+
 
         //2. Hay que crear el diseño del RecyclerView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
 
         //3. Se asigna el diseño al RecyclerView
         rvDependency.setLayoutManager(layoutManager);
@@ -153,7 +148,7 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
     public void onSuccess(List<Dependency> list) {
 
         //1. Si esta visible NoData se cambia visibilidad a GONE
-        if(llNoData.getVisibility() == View.VISIBLE)
+        if (llNoData.getVisibility() == View.VISIBLE)
             llNoData.setVisibility(View.GONE);
 
         //2. Se carga los datos en el Recycler

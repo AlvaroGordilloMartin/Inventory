@@ -1,29 +1,30 @@
 package com.example.inventory.iu.adapter;
 
-import android.util.Log;
+import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.inventory.R;
 import com.example.inventory.data.model.Dependency;
+import com.example.inventory.iu.addedit.AddEditListDependencyFragment;
 import com.github.ivbaranov.mli.MaterialLetterIcon;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.ViewHolder> {
 
     private List<Dependency> list;
-    private  OnItemClickListener listener;
+    private OnItemClickListener listener;
 
-    public interface OnItemClickListener extends View.OnClickListener{
+    public interface OnItemClickListener extends View.OnClickListener {
         void onClick(View view);
 
     }
@@ -36,15 +37,16 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dependency,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_dependency, parent, false);
         view.setOnClickListener(listener);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.iconLetter.setLetter(list.get(position).getShortname());
         holder.tvShortName.setText(list.get(position).getName());
+
     }
 
     @Override
@@ -56,15 +58,14 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     /**
      * Metodo que actualiza los datos del RecyclerView y se debe llamar al metodo para que la vista se anule y se vuela a dibujar
      */
-    public void update(List<Dependency> list){
+    public void update(List<Dependency> list) {
         this.list.clear();
         this.list.addAll(list);
         notifyDataSetChanged();
     }
 
 
-
-    public class ViewHolder extends  RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         MaterialLetterIcon iconLetter;
         TextView tvShortName;
@@ -72,8 +73,10 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            iconLetter=itemView.findViewById(R.id.iconLetter);
-            tvShortName=itemView.findViewById(R.id.tvShortName);
+            iconLetter = itemView.findViewById(R.id.iconLetter);
+            tvShortName = itemView.findViewById(R.id.tvShortName);
         }
     }
+
+
 }
