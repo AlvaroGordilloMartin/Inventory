@@ -1,5 +1,6 @@
 package com.example.inventory.iu.dependency;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -56,8 +57,8 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
         llNoData = view.findViewById(R.id.llNoData);
         rvDependency = view.findViewById(R.id.rvDepedency);
 
-        llNoData.setVisibility(View.GONE);
 
+        llNoData.setVisibility(View.GONE);
         if (list.size() == 0)
             llNoData.setVisibility(View.VISIBLE);
 
@@ -77,17 +78,18 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
                         bundle.putString("Name", list.get(rvDependency.getChildAdapterPosition(view)).getName());
                         bundle.putString("ShortName", list.get(rvDependency.getChildAdapterPosition(view)).getShortname());
                         bundle.putString("Description", list.get(rvDependency.getChildAdapterPosition(view)).getDesciption());
+                        bundle.putInt("id",rvDependency.getChildAdapterPosition(view));
+
+
 
                         //Iniciamos la transaccion
                         Fragment newFragment = new AddEditListDependencyFragment();
+
                         newFragment.setArguments(bundle);
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
                         transaction.replace(R.id.fragment_container, newFragment);
                         transaction.addToBackStack(null);
                         transaction.commit();
-
-
-
 
                     }
                 }, 1000);

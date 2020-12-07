@@ -23,4 +23,8 @@
     <string name="btPerfil">Perfil</string>
     <string name="btConfiguracion">Configuracion</string>
     <string name="btSecciones">Secciones</string>
+    <string name="txtName">Name:</string>
+    <string name="txtShortName">ShortName:</string>
+    <string name="txtDescription">Descriprion:</string>
+    <string name="btCambios">Guardar Cambios</string>
 </resources>

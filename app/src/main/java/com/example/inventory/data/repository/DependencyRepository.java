@@ -1,5 +1,7 @@
 package com.example.inventory.data.repository;
 
+import android.os.Bundle;
+
 import com.example.inventory.data.model.Dependency;
 
 import java.util.ArrayList;
@@ -25,6 +27,7 @@ public class DependencyRepository {
         list.add(new Dependency("1 Ciclo Formativo SMR", "1SMR", "Aula del alumnado de 1SMR", ""));
 
     }
+
 
     public static DependencyRepository getInstance() {
         return repository;

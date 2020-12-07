@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +20,10 @@ public class AddEditListDependencyFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    TextView txtName;
-    TextView txtShortName;
-    TextView txtDescription;
+
+    EditText edtName;
+    EditText edtShortName;
+    EditText edtDescription;
 
     public AddEditListDependencyFragment() {
         // Required empty public constructor
@@ -51,15 +54,25 @@ public class AddEditListDependencyFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        txtName = view.findViewById(R.id.txtName);
-        txtShortName = view.findViewById(R.id.txtShortName);
-        txtDescription = view.findViewById(R.id.txtDescription);
+        edtName = view.findViewById(R.id.edtName);
+        edtShortName = view.findViewById(R.id.edtShortName);
+        edtDescription = view.findViewById(R.id.edtDescription);
 
         Bundle bundle = getArguments();
 
-        txtName.setText(bundle.getString("Name"));
-        txtShortName.setText(bundle.getString("ShortName"));
-        txtDescription.setText(bundle.getString("Description"));
+        edtName.setText(bundle.getString("Name"));
+        edtShortName.setText(bundle.getString("ShortName"));
+        edtDescription.setText(bundle.getString("Description"));
+
+        Button btCambios = view.findViewById(R.id.btCambios);
+
+        btCambios.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
     }
 
 
