@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +24,9 @@ import com.example.inventory.data.repository.DependencyRepository;
 import com.example.inventory.iu.adapter.DependencyAdapter;
 import com.example.inventory.iu.addedit.AddEditListDependencyFragment;
 
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -56,7 +62,7 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
         llLoading = view.findViewById(R.id.llLoading);
         llNoData = view.findViewById(R.id.llNoData);
         rvDependency = view.findViewById(R.id.rvDepedency);
-
+        setHasOptionsMenu(true);
 
         llNoData.setVisibility(View.GONE);
         if (list.size() == 0)
@@ -66,37 +72,36 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
         listener = new DependencyAdapter.OnItemClickListener() {
             @Override
             public void onClick(final View view) {
-
+/*
                 llLoading.setVisibility(View.VISIBLE);
 
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Recogemos los datos de la lista
+
+                        Dependency dependency = new Dependency(list.get(rvDependency.getChildAdapterPosition(view)).getName(),
+                                list.get(rvDependency.getChildAdapterPosition(view)).getShortname(),
+                                list.get(rvDependency.getChildAdapterPosition(view)).getDesciption(),
+                                "");
+
                         Bundle bundle = new Bundle();
-                        bundle.putString("Name", list.get(rvDependency.getChildAdapterPosition(view)).getName());
-                        bundle.putString("ShortName", list.get(rvDependency.getChildAdapterPosition(view)).getShortname());
-                        bundle.putString("Description", list.get(rvDependency.getChildAdapterPosition(view)).getDesciption());
-                        bundle.putInt("id",rvDependency.getChildAdapterPosition(view));
+                        bundle.putSerializable(Dependency.TAG,dependency);
+                        bundle.putInt("id", rvDependency.getChildAdapterPosition(view));
 
 
-
-                        //Iniciamos la transaccion
-                        Fragment newFragment = new AddEditListDependencyFragment();
-
-                        newFragment.setArguments(bundle);
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container, newFragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
+                        MandarDatos(bundle);
 
                     }
                 }, 1000);
 
+*/
 
+                Toast.makeText(getContext(),"Nombre: "+list.get(rvDependency.getChildAdapterPosition(view)).getName(),Toast.LENGTH_SHORT).show();
             }
         };
+
+
 
         //1. Crear el Adapter
         adapter = new DependencyAdapter(list, listener);
@@ -114,6 +119,31 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
 
         presenter = new ListDependencyPresenter(this);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+           case R.id.action_sort:
+                Toast.makeText(getContext(),"Ordenando por Nombre",Toast.LENGTH_SHORT).show();
+                sortList();
+                break;
+       }
+        return true;
+    }
+
+    public void sortList(){
+        Collections.sort(list, new Comparator<Dependency>() {
+            @Override
+            public int compare(Dependency o1, Dependency o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        adapter.notifyDataSetChanged();
+    }
+
+    public void MandarDatos(Bundle bundle){
+        NavHostFragment.findNavController(this).navigate(R.id.action_listDependencyFragment_to_addEditListDependencyFragment,bundle);
     }
 
     @Override

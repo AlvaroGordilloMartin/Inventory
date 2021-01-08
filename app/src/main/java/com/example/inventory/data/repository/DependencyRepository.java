@@ -36,4 +36,8 @@ public class DependencyRepository {
     public List<Dependency> getList() {
         return list;
     }
+
+    public void editar(Dependency dependency, int id) {
+        list.set( id,dependency);
+    }
 }

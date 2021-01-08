@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.inventory.R;
 import com.example.inventory.iu.dependency.ListDependencyFragment;
@@ -52,19 +53,30 @@ public class DashBoardFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dash_board, container, false);
 
         Button btDependencias = view.findViewById(R.id.btDependencias);
+        Button btSettings = view.findViewById(R.id.btConfiguracion);
 
         btDependencias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment newFragment = new ListDependencyFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                AbrirDependencyList();
+            }
+        });
+        btSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AbrirConfiguracion();
             }
         });
 
         return view;
+    }
+
+    public  void AbrirDependencyList(){
+        NavHostFragment.findNavController(this).navigate(R.id.action_dashBoardFragment_to_listDependencyFragment,null);
+    }
+
+    public void AbrirConfiguracion(){
+        NavHostFragment.findNavController(this).navigate(R.id.action_dashBoardFragment_to_settingsFragment,null);
     }
 
 

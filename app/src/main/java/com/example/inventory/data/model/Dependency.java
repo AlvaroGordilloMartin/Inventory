@@ -1,8 +1,10 @@
 package com.example.inventory.data.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Dependency {
+public class Dependency implements Serializable {
+    public static final String TAG = "dependency";
     private String name;
     private String shortname;
     private String desciption;

@@ -9,11 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/NoActionBar">
-        <activity android:name=".iu.InventoryActivity"></activity>
         <activity android:name=".iu.signup.SingUpActivity" />
         <activity android:name=".iu.login.LoginActivity" />
         <activity
-            android:name=".iu.SplashActivity"
+            android:name=".iu.InventoryActivity"
             android:theme="@style/NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -14,8 +14,10 @@
         android:id="@+id/tvTitleSingUp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/tvTitle"
         android:textSize="46sp"
-        android:text="@string/tvTitle" />
+        android:textStyle="bold" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tilUser"
