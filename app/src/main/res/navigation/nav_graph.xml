@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/dashBoardFragment">
+    app:startDestination="@id/listDependencyFragment">
     <fragment
         android:id="@+id/dashBoardFragment"
         android:name="com.example.inventory.iu.DashBoardFragment"
@@ -33,5 +33,21 @@
         android:id="@+id/listDependencyFragment"
         android:name="com.example.inventory.iu.dependency.ListDependencyFragment"
         android:label="fragment_list_dependency"
-        tools:layout="@layout/fragment_list_dependency" />
+        tools:layout="@layout/fragment_list_dependency" >
+        <action
+            android:id="@+id/action_listDependencyFragment_to_addEditListDependencyFragment"
+            app:destination="@id/addEditListDependencyFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEditListDependencyFragment"
+        android:name="com.example.inventory.iu.addedit.AddEditListDependencyFragment"
+        android:label="fragment_add_edit_list_dependency"
+        tools:layout="@layout/fragment_add_edit_list_dependency" >
+        <argument
+            android:name="dependency"
+            app:argType="com.example.inventory.data.model.Dependency" />
+        <action
+            android:id="@+id/action_addEditListDependencyFragment_to_listDependencyFragment"
+            app:destination="@id/listDependencyFragment" />
+    </fragment>
 </navigation>

@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +24,14 @@ import com.example.inventory.data.repository.DependencyRepository;
 import com.example.inventory.iu.adapter.DependencyAdapter;
 import com.example.inventory.iu.addedit.AddEditListDependencyFragment;
 
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
 
 public class ListDependencyFragment extends Fragment implements ListDependencyContract.View {
 
+    private Toolbar toolbar;
     private LinearLayout llLoading;
     private LinearLayout llNoData;
     private RecyclerView rvDependency;
@@ -35,11 +41,12 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
 
     //Lista Dependency
     private DependencyRepository repository = new DependencyRepository();
-    private List<Dependency> list = repository.getList();
+    public  List<Dependency> list = repository.getList();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -58,6 +65,8 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
         rvDependency = view.findViewById(R.id.rvDepedency);
 
 
+
+
         llNoData.setVisibility(View.GONE);
         if (list.size() == 0)
             llNoData.setVisibility(View.VISIBLE);
@@ -67,36 +76,37 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
             @Override
             public void onClick(final View view) {
 
-                llLoading.setVisibility(View.VISIBLE);
+                //llLoading.setVisibility(View.VISIBLE);
 
-                Handler handler = new Handler();
+               /* Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        //Recogemos los datos de la lista
+
+                        Dependency dependency = new Dependency(list.get(rvDependency.getChildAdapterPosition(view)).getName(),
+                                list.get(rvDependency.getChildAdapterPosition(view)).getShortname(),
+                                list.get(rvDependency.getChildAdapterPosition(view)).getDesciption(),
+                                "");
+
                         Bundle bundle = new Bundle();
-                        bundle.putString("Name", list.get(rvDependency.getChildAdapterPosition(view)).getName());
-                        bundle.putString("ShortName", list.get(rvDependency.getChildAdapterPosition(view)).getShortname());
-                        bundle.putString("Description", list.get(rvDependency.getChildAdapterPosition(view)).getDesciption());
-                        bundle.putInt("id",rvDependency.getChildAdapterPosition(view));
+                        bundle.putSerializable(Dependency.TAG,dependency);
+                        bundle.putInt("id", rvDependency.getChildAdapterPosition(view));
 
 
-
-                        //Iniciamos la transaccion
-                        Fragment newFragment = new AddEditListDependencyFragment();
-
-                        newFragment.setArguments(bundle);
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container, newFragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
+                        MandarDatos(bundle);
 
                     }
-                }, 1000);
+                }, 1000);*/
+
+                Toast.makeText(getContext(),"ID:"+list.get(rvDependency.getChildAdapterPosition(view)).getId()+"\nNombre:" + list.get(rvDependency.getChildAdapterPosition(view)).getName(),Toast.LENGTH_SHORT).show();
 
 
             }
         };
+
+
+        Collections.sort(list,Dependency.Nombre);
+
 
         //1. Crear el Adapter
         adapter = new DependencyAdapter(list, listener);
@@ -114,6 +124,10 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
 
         presenter = new ListDependencyPresenter(this);
 
+    }
+
+    public void MandarDatos(Bundle bundle){
+        NavHostFragment.findNavController(this).navigate(R.id.action_listDependencyFragment_to_addEditListDependencyFragment,bundle);
     }
 
     @Override

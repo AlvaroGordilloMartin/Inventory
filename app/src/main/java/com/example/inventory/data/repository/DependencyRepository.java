@@ -21,10 +21,10 @@ public class DependencyRepository {
     }
 
     private void initialice() {
-        list.add(new Dependency("2 Ciclo Formativo DAM", "2DAM", "Aula del alumnado de 2DAM", ""));
-        list.add(new Dependency("1 Ciclo Formativo DAM", "1DAM", "Aula del alumnado de 1DAM", ""));
-        list.add(new Dependency("2 Ciclo Formativo SMR", "2SMR", "Aula del alumnado de 2SMR", ""));
-        list.add(new Dependency("1 Ciclo Formativo SMR", "1SMR", "Aula del alumnado de 1SMR", ""));
+        list.add(new Dependency(4,"2 Ciclo Formativo DAM", "2DAM", "Aula del alumnado de 2DAM", ""));
+        list.add(new Dependency(2,"1 Ciclo Formativo DAM", "1DAM", "Aula del alumnado de 1DAM", ""));
+        list.add(new Dependency(3,"2 Ciclo Formativo SMR", "2SMR", "Aula del alumnado de 2SMR", ""));
+        list.add(new Dependency(1,"1 Ciclo Formativo SMR", "1SMR", "Aula del alumnado de 1SMR", ""));
 
     }
 
@@ -35,5 +35,9 @@ public class DependencyRepository {
 
     public List<Dependency> getList() {
         return list;
+    }
+
+    public void editar(Dependency dependency, int id) {
+        list.set( id,dependency);
     }
 }

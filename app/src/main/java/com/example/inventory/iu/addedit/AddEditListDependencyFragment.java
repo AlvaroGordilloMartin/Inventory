@@ -11,8 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.inventory.R;
+import com.example.inventory.data.model.Dependency;
+import com.example.inventory.data.repository.DependencyRepository;
 
 
 public class AddEditListDependencyFragment extends Fragment {
@@ -20,6 +23,7 @@ public class AddEditListDependencyFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    int id;
 
     EditText edtName;
     EditText edtShortName;
@@ -60,20 +64,30 @@ public class AddEditListDependencyFragment extends Fragment {
 
         Bundle bundle = getArguments();
 
-        edtName.setText(bundle.getString("Name"));
-        edtShortName.setText(bundle.getString("ShortName"));
-        edtDescription.setText(bundle.getString("Description"));
+        id = bundle.getInt("id");
+
+        Dependency dependency = (Dependency) bundle.getSerializable(Dependency.TAG);
+
+        edtName.setText(dependency.getName());
+        edtShortName.setText(dependency.getShortname());
+        edtDescription.setText(dependency.getDesciption());
 
         Button btCambios = view.findViewById(R.id.btCambios);
 
         btCambios.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*Dependency dependency = new Dependency(edtName.getText().toString(),edtShortName.getText().toString(),edtDescription.getText().toString(),"");
+                DependencyRepository.getInstance().editar(dependency,id);
+                NavHostFragment.findNavController(AddEditListDependencyFragment.this).navigate(R.id.action_addEditListDependencyFragment_to_listDependencyFragment);*/
             }
         });
 
+
+
     }
+
+
 
 
 }

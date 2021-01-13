@@ -11,4 +11,5 @@
     <dimen name="layout_progressbar_tvLoading_textSize">16sp</dimen>
     <dimen name="list_dependency_tvNoData_textsize">16sp</dimen>
     <dimen name="letter_icon_size">26dp</dimen>
+    <dimen name="toolbar_elevation">5dp</dimen>
 </resources>

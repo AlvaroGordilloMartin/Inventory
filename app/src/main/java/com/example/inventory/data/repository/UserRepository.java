@@ -34,10 +34,7 @@ public class UserRepository {
      * Inicializa lista de usuarios
      */
     private void initialice(){
-        users.add(new User(1, "lourdes", "Lourdes18?", "Lourdes Rodriguez", "lourdes@iesportada.org","/img/lourdes", TypeUser.MANAGER));
-        users.add(new User(2, "jesus", "Jesus19?", "Jesus González", "jesus@iesportada.org", "/img/jesus", TypeUser.TECHNICAL));
-        users.add(new User(3, "ely", "Ely11111111", "Ely", "ely@iesportada.org", "/img/angela", TypeUser.ADMIN));
-        users.add(new User(3, "alvaro", "Alvarooo1", "Alvaro", "alvaro@iesportada.org", "/img/angela", TypeUser.ADMIN));
+        users.add(new User(0, "alvaro", "Alvarooo1", "Alvaro", "alvaro@iesportada.org", "/img/angela", TypeUser.ADMIN));
 
     }
 

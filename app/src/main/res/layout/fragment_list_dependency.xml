@@ -10,8 +10,8 @@
         android:id="@+id/llNoData"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/imgNoData"
@@ -21,13 +21,13 @@
             app:srcCompat="@drawable/nodata" />
 
         <TextView
-            android:gravity="center"
-            android:fontFamily="@font/aclonica"
-            android:textSize="@dimen/list_dependency_tvNoData_textsize"
             android:id="@+id/tvNoData"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/tvNoData" />
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:text="@string/tvNoData"
+            android:textSize="@dimen/list_dependency_tvNoData_textsize" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -38,7 +38,6 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <include
-        layout="@layout/layout_progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
