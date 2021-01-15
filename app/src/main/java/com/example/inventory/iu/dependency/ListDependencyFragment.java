@@ -23,6 +23,7 @@ import com.example.inventory.data.model.Dependency;
 import com.example.inventory.data.repository.DependencyRepository;
 import com.example.inventory.iu.adapter.DependencyAdapter;
 import com.example.inventory.iu.addedit.AddEditListDependencyFragment;
+import com.example.inventory.iu.base.BaseDialogFragment;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -30,7 +31,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class ListDependencyFragment extends Fragment implements ListDependencyContract.View {
+public class ListDependencyFragment extends Fragment implements ListDependencyContract.View, DependencyAdapter.OnLongClickListener,BaseDialogFragment.OnPositiveClickListener {
 
     private LinearLayout llLoading;
     private LinearLayout llNoData;
@@ -38,6 +39,7 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
     private DependencyAdapter adapter;
     private ListDependencyPresenter presenter;
     private DependencyAdapter.OnItemClickListener listener;
+    private DependencyAdapter.OnLongClickListener longClickListener;
 
     //Lista Dependency
     private DependencyRepository repository = new DependencyRepository();
@@ -46,7 +48,6 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -103,8 +104,12 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
 
 
 
+
+
+
+
         //1. Crear el Adapter
-        adapter = new DependencyAdapter(list, listener);
+        adapter = new DependencyAdapter(list, listener,longClickListener);
 
 
 
@@ -150,6 +155,10 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
     public void onStart() {
         super.onStart();
         presenter.load();
+        if(getArguments()!=null) {
+            if (getArguments().getBoolean(BaseDialogFragment.CONFIRM_DELETE))
+                onPositiveClick();
+        }
     }
 
     @Override
@@ -188,4 +197,21 @@ public class ListDependencyFragment extends Fragment implements ListDependencyCo
     }
 
 
+    @Override
+    public void Delete(Dependency dependency) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BaseDialogFragment.TITLE,getString(R.string.title_delete_dependency));
+        bundle.putString(BaseDialogFragment.MESSAGE,String.format(getString(R.string.message_delete_dependency),dependency.getShortname()));
+        NavHostFragment.findNavController(ListDependencyFragment.this).navigate(R.id.action_listDependencyFragment_to_baseDialogFragment,bundle);
+    }
+
+
+    /**
+     * Este metodo se ejecuta cuando el usuario pulsa el boton aceptar
+     * en el cuadro de dialogo que pide confirmacion
+     */
+    @Override
+    public void onPositiveClick() {
+
+    }
 }

@@ -5,6 +5,7 @@ import androidx.core.content.ContextCompat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.example.inventory.R;
 import com.example.inventory.iu.InventoryActivity;
+import com.example.inventory.iu.preferences.InventoryPreferences;
 import com.example.inventory.iu.signup.SingUpActivity;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -87,6 +89,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
       */
     @Override
     public void onSuccess() {
+        // Solo cuando el login es correcto se escribe el usuario en las preferencias
+        InventoryPreferences.getInstance().putUser(tieUser.getText().toString(),tiePassword.getText().toString());
         Intent intent = new Intent(LoginActivity.this, InventoryActivity.class);
         startActivity(intent);
     }

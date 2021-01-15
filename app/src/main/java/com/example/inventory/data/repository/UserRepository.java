@@ -35,6 +35,8 @@ public class UserRepository {
      */
     private void initialice(){
         users.add(new User(0, "alvaro", "Alvarooo1", "Alvaro", "alvaro@iesportada.org", "/img/angela", TypeUser.ADMIN));
+        users.add(new User(0, "alvaro2", "Alvarooo12", "Alvaro", "alvaro@iesportada.org", "/img/angela", TypeUser.ADMIN));
+
 
     }
 

@@ -27,4 +27,6 @@
     <string name="txtShortName">ShortName:</string>
     <string name="txtDescription">Descriprion:</string>
     <string name="btCambios">Guardar Cambios</string>
+    <string name="title_delete_dependency">Eliminar dependencia</string>
+    <string name="message_delete_dependency">¿Quiere eliminar la dependencia %1$s ?</string>
 </resources>

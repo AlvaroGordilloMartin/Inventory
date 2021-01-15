@@ -23,15 +23,22 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
 
     private List<Dependency> list;
     private OnItemClickListener listener;
+    private OnLongClickListener longListener;
+
 
     public interface OnItemClickListener extends View.OnClickListener {
         void onClick(View view);
 
     }
 
-    public DependencyAdapter(List<Dependency> list, OnItemClickListener listener) {
+    public  interface OnLongClickListener{
+        void Delete(Dependency dependency);
+    }
+
+    public DependencyAdapter(List<Dependency> list, OnItemClickListener listener, OnLongClickListener longListener) {
         this.list = list;
         this.listener = listener;
+        this.longListener=longListener;
     }
 
     @NonNull
@@ -46,7 +53,7 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.iconLetter.setLetter(list.get(position).getShortname());
         holder.tvShortName.setText(list.get(position).getName());
-
+        holder.bind(list.get(position),longListener);
     }
 
     @Override
@@ -76,6 +83,18 @@ public class DependencyAdapter extends RecyclerView.Adapter<DependencyAdapter.Vi
             iconLetter = itemView.findViewById(R.id.iconLetter);
             tvShortName = itemView.findViewById(R.id.tvShortName);
         }
+
+        public  void bind(final Dependency item, final OnLongClickListener listener){
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    listener.Delete(item);
+                    return true;
+                }
+            });
+        }
+
+
     }
 
 

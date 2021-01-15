@@ -30,6 +30,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                //Solo si el checkbox remember no esta seleccionado se muestra login y no existe ningun usuario
                 initLogin();
             }
         }, WAIT_TIME);
