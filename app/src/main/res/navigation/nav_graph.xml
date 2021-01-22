@@ -6,7 +6,7 @@
     app:startDestination="@id/dashBoardFragment">
     <fragment
         android:id="@+id/dashBoardFragment"
-        android:name="com.example.inventory.iu.DashBoardFragment"
+        android:name="com.example.inventorynavigation.iu.DashBoardFragment"
         android:label="fragment_dash_board"
         tools:layout="@layout/fragment_dash_board" >
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/listDependencyFragment"
-        android:name="com.example.inventory.iu.dependency.ListDependencyFragment"
+        android:name="com.example.inventorynavigation.iu.dependency.ListDependencyFragment"
         android:label="fragment_list_dependency"
         tools:layout="@layout/fragment_list_dependency" >
         <action
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/addEditListDependencyFragment"
-        android:name="com.example.inventory.iu.addedit.AddEditListDependencyFragment"
+        android:name="com.example.inventorynavigation.iu.addedit.AddEditListDependencyFragment"
         android:label="fragment_add_edit_list_dependency"
         tools:layout="@layout/fragment_add_edit_list_dependency" >
         <argument
@@ -42,7 +42,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.inventory.iu.preferences.SettingsFragment"
+        android:name="com.example.inventorynavigation.iu.preferences.SettingsFragment"
         android:label="SettingsFragment" >
         <action
             android:id="@+id/action_settingsFragment_to_accountFragment"
@@ -50,14 +50,10 @@
     </fragment>
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.inventory.iu.preferences.AccountFragment"
+        android:name="com.example.inventorynavigation.iu.preferences.AccountFragment"
         android:label="AccountFragment" />
     <dialog
         android:id="@+id/baseDialogFragment"
-        android:name="com.example.inventory.iu.base.BaseDialogFragment"
-        android:label="BaseDialogFragment" >
-        <action
-            android:id="@+id/action_baseDialogFragment_to_listDependencyFragment"
-            app:destination="@id/listDependencyFragment" />
-    </dialog>
+        android:name="com.example.inventorynavigation.iu.base.BaseDialogFragment"
+        android:label="BaseDialogFragment" />
 </navigation>
