@@ -35,7 +35,7 @@
         tools:layout="@layout/fragment_add_edit_list_dependency" >
         <argument
             android:name="dependency"
-            app:argType="com.example.inventory.data.model.Dependency" />
+            app:argType="com.example.inventorynavigation.data.model.Dependency" />
         <action
             android:id="@+id/action_addEditListDependencyFragment_to_listDependencyFragment"
             app:destination="@id/listDependencyFragment" />

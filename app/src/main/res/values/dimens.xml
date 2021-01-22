@@ -11,4 +11,10 @@
     <dimen name="layout_progressbar_tvLoading_textSize">16sp</dimen>
     <dimen name="list_dependency_tvNoData_textsize">16sp</dimen>
     <dimen name="letter_icon_size">26dp</dimen>
+    <dimen name="layout_with_profile_image">96dp</dimen>
+    <dimen name="header_height">170dp</dimen>
+    <dimen name="header_width">280dp</dimen>
+    <dimen name="padding_header_nav">16dp</dimen>
+    <dimen name="padding_header_top_nav">32dp</dimen>
+    <dimen name="padding_header__left_nav">16dp</dimen>
 </resources>

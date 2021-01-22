@@ -31,4 +31,10 @@
     <string name="message_delete_dependency">¿Quiere eliminar la dependencia %1$s ?</string>
     <string name="confirm_delet_dependency">Se ha eliminado la dependencia</string>
     <string name="undo">Undo</string>
+    <string name="menu_settings">Opciones</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="menu_aboutus">Sobre mi</string>
+    <string name="action_dependency">Dependencia</string>
+    <string name="action_section">Section</string>
+    <string name="action_product">Product</string>
 </resources>
